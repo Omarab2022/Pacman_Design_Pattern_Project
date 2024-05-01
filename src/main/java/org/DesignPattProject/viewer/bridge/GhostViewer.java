@@ -1,6 +1,8 @@
 package org.DesignPattProject.viewer.bridge;
 
-// Abstraction
+import org.DesignPattProject.gui.GUI;
+
+
 public interface GhostViewer {
-	void draw();
+	void draw(GUI gui);
 }

@@ -2,10 +2,7 @@ package org.DesignPattProject.gui;
 
 import org.DesignPattProject.model.elements.Pacman;
 import org.DesignPattProject.model.elements.Position;
-import org.DesignPattProject.model.elements.ghost.Blinky;
-import org.DesignPattProject.model.elements.ghost.Clyde;
-import org.DesignPattProject.model.elements.ghost.Inky;
-import org.DesignPattProject.model.elements.ghost.Pinky;
+import org.DesignPattProject.model.elements.ghost.*;
 
 import java.io.IOException;
 
@@ -35,6 +32,8 @@ public interface GUI {
     void refresh() throws IOException;
 
     void close() throws IOException;
+
+    public void drawGhost(Ghost ghost);
 
     enum ACTION {UP, RIGHT, DOWN, LEFT, NONE, QUIT, SELECT}
 }

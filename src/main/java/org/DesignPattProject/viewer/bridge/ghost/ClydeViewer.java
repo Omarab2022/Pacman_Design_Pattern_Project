@@ -2,15 +2,18 @@ package org.DesignPattProject.viewer.bridge.ghost;
 
 import org.DesignPattProject.model.elements.ghost.Clyde;
 import org.DesignPattProject.gui.GUI;
-import org.DesignPattProject.viewer.bridge.ConcreteGhostViewer;
 
-public class ClydeViewer extends ConcreteGhostViewer {
-    public ClydeViewer(Clyde clyde, GUI gui) {
-        super(clyde, gui);
+import org.DesignPattProject.viewer.bridge.GhostViewer;
+
+public class ClydeViewer implements GhostViewer {
+    private Clyde clyde;
+
+    public ClydeViewer(Clyde clyde) {
+        this.clyde = clyde;
     }
 
-
-    protected void drawGhost() {
-        gui.drawClyde((Clyde) ghost);
+    @Override
+    public void draw(GUI gui) {
+        gui.drawClyde(clyde);
     }
 }

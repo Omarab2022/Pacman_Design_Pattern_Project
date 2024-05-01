@@ -2,15 +2,18 @@ package org.DesignPattProject.viewer.bridge.ghost;
 
 import org.DesignPattProject.model.elements.ghost.Pinky;
 import org.DesignPattProject.gui.GUI;
-import org.DesignPattProject.viewer.bridge.ConcreteGhostViewer;
 
-public class PinkyViewer extends ConcreteGhostViewer {
-    public PinkyViewer(Pinky pinky, GUI gui) {
-        super(pinky, gui);
+import org.DesignPattProject.viewer.bridge.GhostViewer;
+
+public class PinkyViewer implements GhostViewer {
+    private Pinky pinky;
+
+    public PinkyViewer(Pinky pinky) {
+        this.pinky = pinky;
     }
 
-
-    protected void drawGhost() {
-        gui.drawPinky((Pinky) ghost);
+    @Override
+    public void draw(GUI gui) {
+        gui.drawPinky(pinky);
     }
 }

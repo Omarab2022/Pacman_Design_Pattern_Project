@@ -13,10 +13,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import org.DesignPattProject.model.elements.Pacman;
 import org.DesignPattProject.model.elements.Position;
-import org.DesignPattProject.model.elements.ghost.Blinky;
-import org.DesignPattProject.model.elements.ghost.Clyde;
-import org.DesignPattProject.model.elements.ghost.Inky;
-import org.DesignPattProject.model.elements.ghost.Pinky;
+import org.DesignPattProject.model.elements.ghost.*;
 import org.DesignPattProject.model.elements.ghost.ghostStates.ChasedState;
 import java.awt.*;
 import java.io.File;
@@ -105,6 +102,18 @@ public class LanternaGUI implements GUI {
         }
     }
 
+    @Override
+    public void drawGhost(Ghost ghost) {
+        if (ghost instanceof Blinky) {
+            drawBlinky((Blinky) ghost);
+        } else if (ghost instanceof Inky) {
+            drawInky((Inky) ghost);
+        } else if (ghost instanceof Pinky) {
+            drawPinky((Pinky) ghost);
+        } else if (ghost instanceof Clyde) {
+            drawClyde((Clyde) ghost);
+        }
+    }
     @Override
     public void drawWall(Position position) {
         paintSquare(position.getX(), position.getY(), "#3333FF");

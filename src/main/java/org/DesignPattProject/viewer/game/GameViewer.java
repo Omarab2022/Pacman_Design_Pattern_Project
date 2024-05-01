@@ -9,8 +9,14 @@ import org.DesignPattProject.model.elements.Wall;
 import org.DesignPattProject.gui.GUI;
 import org.DesignPattProject.sound.SoundFX;
 import org.DesignPattProject.viewer.Viewer;
-import org.DesignPattProject.viewer.bridge.ConcreteGhostViewer;
+
 import org.DesignPattProject.viewer.bridge.GhostViewer;
+import org.DesignPattProject.viewer.bridge.GhostViewerBridge;
+import org.DesignPattProject.viewer.bridge.ghost.BlinkyViewer;
+import org.DesignPattProject.viewer.bridge.ghost.ClydeViewer;
+import org.DesignPattProject.viewer.bridge.ghost.InkyViewer;
+import org.DesignPattProject.viewer.bridge.ghost.PinkyViewer;
+
 import java.util.List;
 
 public class GameViewer extends Viewer<Arena> {
@@ -38,10 +44,11 @@ public class GameViewer extends Viewer<Arena> {
         PowerPelletsViewer powerPelletsViewer = new PowerPelletsViewer();
 
         // Utilisation du pattern Bridge pour afficher les fantômes
-        GhostViewer blinkyViewer = new ConcreteGhostViewer(this.getModel().getBlinky(), gui);
-        GhostViewer inkyViewer = new ConcreteGhostViewer(this.getModel().getInky(), gui);
-        GhostViewer pinkyViewer = new ConcreteGhostViewer(this.getModel().getPinky(), gui);
-        GhostViewer clydeViewer = new ConcreteGhostViewer(this.getModel().getClyde(), gui);
+        GhostViewerBridge blinkyViewer = new GhostViewerBridge(new BlinkyViewer(this.getModel().getBlinky()));
+        GhostViewerBridge inkyViewer = new GhostViewerBridge(new InkyViewer(this.getModel().getInky()));
+        GhostViewerBridge pinkyViewer = new GhostViewerBridge(new PinkyViewer(this.getModel().getPinky()));
+        GhostViewerBridge clydeViewer = new GhostViewerBridge(new ClydeViewer(this.getModel().getClyde()));
+
 
         for (Wall wall : walls) {
             wallViewer.draw(wall, gui);
@@ -55,11 +62,10 @@ public class GameViewer extends Viewer<Arena> {
             powerPelletsViewer.draw(powerPellet, gui);
         }
 
-        // Dessiner les fantômes
-        blinkyViewer.draw();
-        inkyViewer.draw();
-        pinkyViewer.draw();
-        clydeViewer.draw();
+        blinkyViewer.draw(gui);
+        inkyViewer.draw(gui);
+        pinkyViewer.draw(gui);
+        clydeViewer.draw(gui);
 
         pacmanViewer.draw(pacman, gui);
     }

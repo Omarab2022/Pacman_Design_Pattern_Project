@@ -12,20 +12,21 @@ public class MenuViewer extends Viewer<Menu> {
     }
 
     private static final String[] TITLE_TEXT = {
-            " _     _  \n",
-            "|_)/\\ /  _ |\\/| /\\ |\\ |\n",
-            "| /--\\\\_   |  |/--\\| \\|\n"
+            "  VVV VVVVV V   V  VVVVV \n",
+            "    V V   V V   V  V   V \n",
+            "    V VVVVV V   V  VVVVV \n",
+            "V   V V   V  V V   V   V \n",
+            "VVVVV V   V   V    V   V \n"
     };
 
     public void drawElements(GUI gui) {
         for (int i = 0; i < TITLE_TEXT.length; i++) {
-            gui.drawText(new Position(2, 3 + i), TITLE_TEXT[i], "#f5e72c");
+            gui.drawText(new Position(2, 3 + i), TITLE_TEXT[i], "#ffa500"); // Couleur orange
         }
 
         for (int i = 0; i < getModel().getEntriesLen(); i++) {
             gui.drawText(new Position(11, 10 + 2*i), getModel().getEntry(i),
-                    getModel().isSelected(i) ? "#34bbc9" : "#FFFFFF");
+                    getModel().isSelected(i) ? "#ff0000" : "#FFFFFF"); // Couleur bleue ou blanc
         }
     }
-
 }
